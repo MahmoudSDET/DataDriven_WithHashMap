@@ -1,0 +1,2 @@
+"USER_NAME","APP_SERVICE","TER_TYPE","LEATEST_APP_VERSION","FORCED","STATUS","EXCEPTION_ERROR_CODE","EXCEPTION_MESSAGE","EXCEPTION_MESSAGE_DETAILED"
+"omnia1","FRMA","3",,"true","Failed","01120200000002","No App Terminal Type  found ","No AppTerminalType found with uniqueCode=[FRMA.3.1.92]"
