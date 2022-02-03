@@ -14,15 +14,16 @@ import org.apache.commons.lang3.StringUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.CSVReader;
 
-public class CsvFileReader5 {
+public class CsvFileReader4 {
 	
 //private static final String CSVFILEPATH = "./Files/VERSION_UPGRADE.csv";
 
 
 
+	
 
 
-public  static List<Object> retrieveSpecificData(String fileBath,String columnName) throws Exception{
+  public static List<Object> retrieveSpecificData(String fileBath,String columnName) throws Exception{
 	
 	
 	List<Object> columnData=new ArrayList<Object>();
@@ -50,7 +51,7 @@ public  static List<Object> retrieveSpecificData(String fileBath,String columnNa
 		
 		
 		
-		List <Object> DataRetieved=retrieveSpecificData("./Files/upgrade.csv","Status");
+		List <Object> DataRetieved=retrieveSpecificData("./Files/VERSION_UPGRADE.csv","EXCEPTION_MESSAGE_DETAILED");
 		//List <Object> DataRetieved=retrieveSpecificData("./Files/upgrade.csv","Status");
 		for(Object d:DataRetieved) {
 			
@@ -62,40 +63,28 @@ public  static List<Object> retrieveSpecificData(String fileBath,String columnNa
 	
 	private  static ArrayList<Map<Object,Object>>  loadDataFromCsv(String fileBath ) throws Exception {
 
-		 ArrayList<Map<Object,Object>> Object = new ArrayList<Map<Object,Object>>();
-		
-		File file = new File(fileBath);
-		byte[] bytes = FileUtils.readFileToByteArray(file);
-		String data = new String(bytes);
-		
-		data = StringUtils.replaceAll(data, "\r", "");
-		String[] dataArray = data.split("\n");
-		
-	
-		
-		String keys = dataArray[0];
-	
-		 
-		 
+		 ArrayList<Map<Object,Object>> Object = new ArrayList<Map<Object,Object>>(); 
+		 CSVReader reader = new CSVReader(new FileReader(fileBath)) ;
+	           List<String[]> r = reader.readAll();
+	       //     r.forEach(x -> System.out.println(Arrays.toString(x)));
+	           String [] keys=   r.get(0);
 	           
 	        
 		Map<String, Map<String, String>> outerMap = new HashMap<>();
 		List<String> keysFromFile = new ArrayList<>();
 		
-		String[] keyArr = keys.split(",");
-		int sizeArray=keyArr.length;
+	
+		int sizeArray=keys.length;
 		
 		
-		keysFromFile.addAll(Arrays.asList(keyArr));
-	//	keysFromFile.remove(0);
-		// Object[][] obj = new Object[ dataArray.length-1][0];
-		
-		for(int d = 1; d < dataArray.length; d++) {
+		keysFromFile.addAll(Arrays.asList(keys));
+	
+		for(int d = 1; d < r.size(); d++) {
 			
 			
 			List l=new ArrayList<Map<String,String>>();
 			 List<String> row = new ArrayList<>();
-			String[] rowArr =dataArray[d].split(",");
+			String[] rowArr =r.get(d);
 			
 		
 			

@@ -17,6 +17,13 @@ public class CsvFileReader3 {
 private static final String CSVFILEPATH = "./Files/upgrade.csv";
 
 
+
+
+
+
+
+
+
 	public static void main(String[] args) throws Exception {
 	
 	//	System.out.println(loadDataFromCsv());
@@ -30,8 +37,10 @@ private static final String CSVFILEPATH = "./Files/upgrade.csv";
 	    	
 	    	 ObjectMapper oMapper = new ObjectMapper();
 	    	 Map<String, Object> map2 = oMapper.convertValue(list.get(i), Map.class);
+	    	 System.out.println(map2.get("USER_NAME"));
 	    	 System.out.println(map2.get("Status"));
 	    	 System.out.println(map2.get("Comment"));
+	    	 System.out.println(map2.get("test"));
 	    	 System.out.println();
 	    	 
 	    	// Map mapItems =ArrayUtils.toMap(obj2);
@@ -41,7 +50,7 @@ private static final String CSVFILEPATH = "./Files/upgrade.csv";
 	//	 System.out.print(obj2[0][0]);
 	}
 	
-	private  static ArrayList<Map<String,String>>  loadDataFromCsv() throws Exception {
+	private  static ArrayList<Map<String,String>>  loadDataFromCsv( ) throws Exception {
 
 		 ArrayList<Map<String,String>> Object = new ArrayList<Map<String,String>>();
 		
@@ -92,9 +101,9 @@ private static final String CSVFILEPATH = "./Files/upgrade.csv";
 			 	
 			if (row.get(i)==null ||row.get(i).isBlank() ||row.get(i).isEmpty())
 			{
-				mp.put(keysFromFile.get(i), null);
+				mp.put(keysFromFile.get(i).trim(), null);
 			}else {
-				mp.put(keysFromFile.get(i), row.get(i).trim());
+				mp.put(keysFromFile.get(i).trim(), row.get(i).trim());
 			}
 			
 			  
